@@ -560,13 +560,16 @@ SQLINTERVAL	interval2itype(SQLSMALLINT ctype)
 static int getPrecisionPart(int precision, const char * precPart)
 {
 	char	fraction[] = "000000000";
-	int		fracs = sizeof(fraction) - 1;
+	const int	fracs = sizeof(fraction) - 1;
 	size_t	cpys;
 
 	if (precision < 0)
 		precision = 6; /* default */
 	if (precision == 0)
 		return 0;
+	/* fraction[] stores at most 9 digits, so clamp external precision before indexing. */
+	if (precision > fracs)
+		precision = fracs;
 	cpys = strlen(precPart);
 	if (cpys > fracs)
 		cpys = fracs;
