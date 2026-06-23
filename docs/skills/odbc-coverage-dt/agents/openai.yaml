@@ -1,0 +1,7 @@
+﻿interface:
+  display_name: "ODBC Coverage DT"
+  short_description: "Raise ODBC driver branch coverage with Design Tests"
+  default_prompt: "Use $odbc-coverage-dt to analyze an ODBC driver function, add DT cases, run gcov/lcov, and report uncovered branches."
+
+policy:
+  allow_implicit_invocation: true
